@@ -1,20 +1,18 @@
 'use strict';
 
 function displayResults(responseJson) {
+    console.log(responseJson);
     const jsonArray = responseJson.message;
-    console.log(jsonArray);
     $('.results-img').empty();
     for (let i=0; i < jsonArray.length; i++) {
-        console.log(jsonArray[i]);
         $('.results-img').append(`<img src="${jsonArray[i]}">`);
     }
     $('.results').removeClass('hidden');
-  }
+}
 
 function getDogImages(userInput) {
     const dogURL = "https://dog.ceo/api/breeds/image/random/" + userInput;
-    console.log(dogURL);
-    fetch("https://dog.ceo/api/breeds/image/random/" + userInput)
+    fetch(dogURL)
         .then(response => response.json())
         .then(responseJson =>
             displayResults(responseJson))
